@@ -4,10 +4,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
-import com.example.common.theme.BottomNavIconSelectedColor
-import com.example.common.theme.BottomNavIconUnSelectedColor
-import com.example.common.theme.LightPrimary
-import com.example.common.theme.TextDefault
+import com.example.features.common.theme.BottomNavIconSelectedColor
+import com.example.features.common.theme.BottomNavIconUnSelectedColor
+import com.example.features.common.theme.LightPrimary
+import com.example.features.common.theme.TextDefault
 import com.example.features.main.navigation.NavigationItem
 
 @Composable
@@ -26,7 +26,7 @@ fun BottomNavigationBar(navController: NavController) {
     }
 
     NavigationBar {
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.route) {
                 NavigationItem.Conversions.Filters.route -> {}
                 else -> {}

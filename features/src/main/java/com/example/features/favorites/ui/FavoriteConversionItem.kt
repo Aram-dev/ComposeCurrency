@@ -11,8 +11,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -22,10 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.common.theme.BackgroundCard
-import com.example.common.theme.BackgroundDefault
-import com.example.common.theme.TextDefault
+import com.example.features.common.theme.BackgroundCard
+import com.example.features.common.theme.BackgroundDefault
+import com.example.features.common.theme.TextDefault
 import com.example.domain.entity.Favorite
 import com.example.features.R
 
@@ -33,18 +30,8 @@ import com.example.features.R
 fun ConversionRateItem(
     rate: String,
     favorite: Favorite,
-    viewModel: FavoritesViewModel,
     onFavoriteClick: (Favorite) -> Unit
 ) {
-//    val favoriteItem = viewModel.favoriteItemRate.collectAsState()
-//    val rate = if (favoriteItem.value.rates.isNotEmpty()) {
-//        favoriteItem.value.rates.values.first().toString()
-//    } else {
-//        "Invalid"
-//    }
-//
-//    val currencyCodes = favorite.conversionRate.split("/")
-//    viewModel.getFavoriteItemRate(currencyCodes.first(), currencyCodes.last())
 
     val favoritePainter = painterResource(id = R.drawable.ic_favorites_on)
 

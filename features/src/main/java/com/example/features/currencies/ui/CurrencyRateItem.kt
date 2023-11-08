@@ -20,9 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.common.theme.BackgroundCard
-import com.example.common.theme.BackgroundDefault
-import com.example.common.theme.TextDefault
+import com.example.features.common.theme.BackgroundCard
+import com.example.features.common.theme.BackgroundDefault
+import com.example.features.common.theme.TextDefault
 import com.example.domain.entity.Rate
 import com.example.features.R
 

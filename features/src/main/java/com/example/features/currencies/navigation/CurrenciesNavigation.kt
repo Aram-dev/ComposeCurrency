@@ -8,6 +8,6 @@ import com.example.features.main.navigation.NavigationItem
 
 fun NavGraphBuilder.currenciesScreen(navController: NavHostController) {
     composable(route = NavigationItem.Conversions.Currencies.route) {
-        CurrenciesRoute(navController)
+        CurrenciesRoute(it, navController)
     }
 }

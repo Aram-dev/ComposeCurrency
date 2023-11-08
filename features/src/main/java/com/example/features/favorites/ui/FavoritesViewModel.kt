@@ -27,13 +27,13 @@ class FavoritesViewModel @Inject constructor(
     val favoriteItemRate: StateFlow<CurrencyRates>
         get() = _favoriteItemRate
 
-    fun getFavoriteItemRate(base: String, symbols: String) = flow {
+    fun getFavoriteItemRate(base: String, symbols: String) {
         viewModelScope.launch {
             favoritesRepository.favoriteItemRate(base, symbols).collectLatest {
                 when(it) {
                     is ViewState.Idle -> {}
                     is ViewState.Loading -> {}
-                    is ViewState.Success -> this@flow.emit(it.data)
+                    is ViewState.Success -> _favoriteItemRate.emit(it.data)
                     is ViewState.Failure -> {}
                 }
             }

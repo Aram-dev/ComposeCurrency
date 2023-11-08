@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.compose.rememberNavController
-import com.example.common.theme.ComposeCurrencyTheme
+import com.example.features.common.theme.ComposeCurrencyTheme
 import com.example.features.main.navigation.NavigationItem
 import com.example.features.main.ui.MainScreen
 import dagger.hilt.android.AndroidEntryPoint

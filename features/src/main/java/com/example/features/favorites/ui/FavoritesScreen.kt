@@ -9,11 +9,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.common.theme.BackgroundDefault
+import com.example.features.common.theme.BackgroundDefault
 import com.example.features.main.navigation.NavigationItem
 import com.example.features.main.ui.ApplicationTopBar
 
@@ -47,12 +45,12 @@ fun FavoritesScreen(viewModel: FavoritesViewModel) {
                         "Invalid"
                     }
                     val currencyCodes = it.conversionRate.split("/")
-//                    viewModel.getFavoriteItemRate(currencyCodes.first(), currencyCodes.last())
+                    viewModel.getFavoriteItemRate(currencyCodes.first(), currencyCodes.last())
 
-                    val n = viewModel.getFavoriteItemRate(currencyCodes.first(), currencyCodes.last()).collectAsState(null)
+//                    val n = viewModel.getFavoriteItemRate(currencyCodes.first(), currencyCodes.last()).collectAsState(null)
 
 
-                    ConversionRateItem(rate, it, viewModel) { favorite ->
+                    ConversionRateItem(rate, it) { favorite ->
                         viewModel.removeFromFavorites(favorite = favorite)
                     }
                 }

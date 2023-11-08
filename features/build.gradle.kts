@@ -28,7 +28,6 @@ android {
 
 dependencies {
     api(project(BuildModules.DOMAIN))
-    api(project(BuildModules.COMMON_UI))
 
     platformImplementation(Dependencies.COMPOSE_BOM)
 

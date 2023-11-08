@@ -1,4 +1,4 @@
-package com.example.common.theme
+package com.example.features.common.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

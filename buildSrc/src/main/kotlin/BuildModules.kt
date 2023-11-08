@@ -3,5 +3,5 @@ object BuildModules {
     const val DATA = ":data"
     const val DOMAIN = ":domain"
     const val COMMON_UI = ":common-ui"
-    const val FEATURE_LIST = ":features"
+    const val FEATURES = ":features"
 }

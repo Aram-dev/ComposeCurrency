@@ -2,20 +2,21 @@ package com.example.features.filters.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.material3.ButtonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.common.theme.*
+import com.example.features.common.theme.*
 import com.example.features.main.navigation.NavigationItem
 import com.example.features.main.ui.ApplicationTopBar
 
@@ -30,13 +31,16 @@ fun FiltersScreen(navController: NavHostController) {
     ) {
 
         ApplicationTopBar(NavigationItem.Conversions.Filters.route, true, navController)
-        FilterRadioButtons()
+        FilterRadioButtons {
+            navController.previousBackStackEntry?.savedStateHandle?.set("selected_filter", it)
+            navController.navigateUp()
+        }
     }
 }
 
 @Preview
 @Composable
-fun FilterRadioButtons() {
+fun FilterRadioButtons(onApply: (String) -> Unit) {
     val filters = mapOf("az" to "Code A-Z", "za" to "Code Z-A", "asc" to "Quote Asc.", "desc" to "Quote Desc.")
     val selectedOption = remember { mutableStateOf(filters.values.first()) }
 
@@ -79,12 +83,21 @@ fun FilterRadioButtons() {
             }
         }
 
-        TextButton(
+        Spacer(modifier = Modifier.weight(1f))
+
+        Button(
             onClick = {
-
+                val key = filters.entries.find { it.value == selectedOption.value }?.key
+                key?.let { onApply.invoke(it) }
             },
+            modifier = Modifier.weight(1f, false).fillMaxWidth().clip(CircleShape),
+            colors = ButtonDefaults.buttonColors(contentColor = BackgroundDefault, backgroundColor = Primary)
         ) {
-
+            Text(
+                text = "Apply",
+                fontSize = 17.sp,
+                modifier = Modifier.padding(horizontal = 30.dp, vertical = 6.dp)
+            )
         }
 
     }

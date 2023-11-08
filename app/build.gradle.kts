@@ -71,7 +71,7 @@ android {
 dependencies {
     api(project(BuildModules.DATA))
     implementation(project(BuildModules.DOMAIN))
-    implementation(project(BuildModules.FEATURE_LIST))
+    implementation(project(BuildModules.FEATURES))
     implementation(Dependencies.NAVIGATION_UI)
     implementation(Dependencies.LOGGING)
     implementation(Dependencies.RETROFIT)

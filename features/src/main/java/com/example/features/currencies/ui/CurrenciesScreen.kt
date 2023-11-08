@@ -22,29 +22,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import com.example.common.theme.BackgroundDefault
-import com.example.common.theme.BackgroundHeader
-import com.example.common.theme.Secondary
+import com.example.features.common.theme.BackgroundDefault
+import com.example.features.common.theme.BackgroundHeader
+import com.example.features.common.theme.Secondary
 import com.example.domain.entity.Favorite
 import com.example.domain.entity.Rate
 import com.example.features.R
+import com.example.features.common.filter.filter
 import com.example.features.main.navigation.NavigationItem
 import com.example.features.main.ui.ApplicationTopBar
 
 
 @Composable
 fun CurrenciesRoute(
+    entry: NavBackStackEntry,
     navController: NavController,
     viewModel: CurrenciesViewModel = hiltViewModel()
 ) {
-    CurrenciesScreen(viewModel) {
+    CurrenciesScreen(entry, viewModel) {
         navController.navigate(NavigationItem.Conversions.Filters.route)
     }
 }
 
 @Composable
-fun CurrenciesScreen(viewModel: CurrenciesViewModel, onFilterClick: () -> Unit) {
+fun CurrenciesScreen(entry: NavBackStackEntry, viewModel: CurrenciesViewModel, onFilterClick: () -> Unit) {
     val defaultBase: MutableState<String> = remember { mutableStateOf("USD") }
     viewModel.getCurrencies(defaultBase.value)
     val currencies = viewModel.currencies.collectAsState().value
@@ -55,6 +58,7 @@ fun CurrenciesScreen(viewModel: CurrenciesViewModel, onFilterClick: () -> Unit) 
 
     var expanded by remember { mutableStateOf(false) }
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
+    val selectedFilter = entry.savedStateHandle.get<String>("selected_filter")
 
     val painter = if (expanded)
         painterResource(R.drawable.ic_arrow_up)
@@ -150,7 +154,7 @@ fun CurrenciesScreen(viewModel: CurrenciesViewModel, onFilterClick: () -> Unit) 
         }
         LazyColumn(Modifier.fillMaxSize()) {
             items(
-                items = rates,
+                items = rates.filter(selectedFilter),
                 itemContent = {
                     RateItem(it) { rateItem ->
                         if (rateItem.isFavorite) {

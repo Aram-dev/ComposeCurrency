@@ -1,8 +1,7 @@
-package com.example.common.theme
+package com.example.features.common.theme
 
 import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -70,24 +69,6 @@ private val DarkThemeColors = darkColorScheme(
     inverseSurface = dark_inverseSurface,
     inversePrimary = dark_inversePrimary,
 )
-
-@Composable
-fun ComposeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
-) {
-    val colors = if (!darkTheme) {
-        LightThemeColors
-    } else {
-        DarkThemeColors
-    }
-
-    MaterialTheme(
-        colorScheme = colors,
-        typography = AppTypography,
-        content = content
-    )
-}
 
 @Composable
 fun ComposeCurrencyTheme(
